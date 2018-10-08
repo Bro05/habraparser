@@ -20,7 +20,7 @@ ini = [{"name": "Заголовок", "pattern": {"name": "h2", "class": "post__
 
 def get_data(data, name, pattern, iscomments=False, istags=False):
     if istags:
-        result = ", ".join([tag for tag in data.find_all(attrs=pattern)])
+        result = ", ".join([tag.text.strip() for tag in data.find_all(**pattern)])
     elif iscomments:
         if not data.find(**pattern["counter"]):
             return ""
